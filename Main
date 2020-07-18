@@ -1,0 +1,68 @@
+#======#
+# Main #
+#======#
+#set.seed(123)
+# Enter Training Parameters Here
+#-------------------------------#
+# Architecture Parameters
+Epochs<-50
+Height<-10^2
+Depth<-2
+# Training Parameters
+Batch.size.percent<-.5
+# regularization Parameters
+dropout.rate=.25
+
+# Markowitz Parameters
+mean_variance_tradeoff<-0 #0 Min var 1 mrk portfoli
+invertibility_factor<- 10^-5
+
+# Meta-Parameters
+Window.size<-60
+# of data-points considered from entire data-set
+N_test<-10^2 # 
+N_train<-10^2
+
+
+#
+##
+###
+####
+#####
+####
+###
+##
+#
+
+
+
+
+# Code Parameter(s)
+#------------------#
+# Set Reference Directory
+anchor_directory<- "/scratch/users/kratsioa/Polybox/UniBag/NE_BLNs/Numerics/";setwd(anchor_directory) #getwd() 
+
+
+#------------------#
+if(!exists("FIRST.RUN.Q")){ #CHECK if First Run
+source("utils_NE_BLNS.R");beep(1)
+source("Crypto_Currency_Data_Processor.R");beep(1)
+source("Markotiz_Rolling_Window.R");beep(1)
+# Set as first Run
+FIRST.RUN.Q <- TRUE
+}
+  
+#=================#
+# Reports Results #
+#=================#
+source(Visualize.R);beep(1)
+if(FALSE){#INDEV
+  # Analytic
+  Reports_Cov_Prediction
+  # Financial
+  Financial_Reports_Train
+  Financial_Reports_Test
+  # Variying Variance-Aversion
+  Financial_Reports_NE_Efficient
+  Financial_Reports_NE_Efficient_test
+}
